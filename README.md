@@ -1,5 +1,3 @@
-**Читати іншими мовами: [Русский](README.md), [Українська](README.ua.md).**
-
 # Віджет відгуків
 
 Як і більшість компаній, кафе Expresso збирає відгуки від своїх клієнтів. Твоє
@@ -25,7 +23,7 @@ state = {
 
 Інтерфейс може мати такий вигляд.
 
-![preview](./mockup/step-1.png)
+![preview](./assets/step-1.png)
 
 ## Крок 2
 
@@ -35,7 +33,7 @@ state = {
 допоміжні методи `countTotalFeedback()` і `countPositiveFeedbackPercentage()`,
 які підраховують ці значення, ґрунтуючись на даних у стані (обчислювані дані).
 
-![preview](./mockup/step-2.png)
+![preview](./assets/step-2.png)
 
 ## Крок 3
 
@@ -56,4 +54,4 @@ state = {
 після того, як було зібрано хоча б один відгук. Повідомлення про відсутність
 статистики винеси в компонент `<Notification message="There is no feedback">`.
 
-![preview](./mockup/preview.gif)
+![preview](./assets/preview.gif)
