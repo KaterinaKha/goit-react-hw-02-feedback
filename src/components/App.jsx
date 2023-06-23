@@ -1,16 +1,62 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
-      React homework template. Feedback
-    </div>
-  );
-};
+import React, { Component } from 'react';
+import { FeedbackOptions } from './Feedback/FeedbackOptions';
+import { Statistics } from './Statistics/Statistics';
+import { Notification } from './Notification/Notification';
+import { Section } from './Section/Section';
+
+export class App extends Component {
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  };
+
+  feedbackStatsCounter = options => {
+    this.setState(prevState => {
+      return {
+        [options]: prevState[options] + 1,
+      };
+    });
+  };
+
+  totalFeedback() {
+    const { good, neutral, bad } = this.state;
+    const total = good + neutral + bad;
+    return total;
+  }
+
+  positiveFeedbackPercentage() {
+    const { good } = this.state;
+    const positiveFeedbackPercentage = Number(
+      ((good / this.totalFeedback()) * 100).toFixed(1)
+    );
+    return positiveFeedbackPercentage > 0 ? positiveFeedbackPercentage : 0;
+  }
+
+  render() {
+    const { good, neutral, bad } = this.state;
+    return (
+      <div>
+        <Section title="Please leave your feedback">
+          <FeedbackOptions
+            options={['good', 'neutral', 'bad']}
+            onLeavFeedback={this.feedbackStatsCounter}
+          />
+        </Section>
+        <Section title="Statistic">
+          {this.totalFeedback() === 0 ? (
+            <Notification message="There is no feedback" />
+          ) : (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={this.totalFeedback()}
+              positiveFeedback={this.positiveFeedbackPercentage()}
+            />
+          )}
+        </Section>
+      </div>
+    );
+  }
+}
