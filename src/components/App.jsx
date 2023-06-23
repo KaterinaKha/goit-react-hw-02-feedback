@@ -36,7 +36,7 @@ export class App extends Component {
   render() {
     const { good, neutral, bad } = this.state;
     return (
-      <div>
+      <>
         <Section title="Please leave your feedback">
           <FeedbackOptions
             options={['good', 'neutral', 'bad']}
@@ -56,7 +56,7 @@ export class App extends Component {
             />
           )}
         </Section>
-      </div>
+      </>
     );
   }
 }
